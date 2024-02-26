@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mysql:
+    image: 'mysql:5.7'
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: stationSki
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+ # Spring Boot Application Service
+  spring-app:
+    image: amin750/devops_project1:SpringImage
+    container_name: spring
+    restart:  on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/stationSki?createDatabaseIfNotExist=true&useUnicode=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_PROFILES_ACTIVE: dev
+      MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: /actuator
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+      MANAGEMENT_ENDPOINTS_PROMETHEUS_ENABLED: true
+      MANAGEMENT_METRICS_ENABLED: true
+    ports:
+      - "8282:8282"
+    depends_on:
+      - mysql
+volumes:
+  db:
