@@ -41,7 +41,19 @@ pipeline {
 	 			docker tag stationski:1.0.0 hediabdelli719/hedi_repo:newversion
          		docker push hediabdelli719/hedi_repo:newversion
             '''
-                
+                stage('Docker compose') {
+       steps {
+         parallel(
+           "Docker compose": {
+               sh 'docker-compose up '
+           },
+           "Delete running containers": {
+		       sh 'sleep 7m '
+               sh 'docker rm -f ci-spring ci-db ci-angular '
+           }
+         )
+       }
+     }
             }
          }*/
     }
