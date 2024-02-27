@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Git clone') {
             steps {
                 
                 git branch: 'hedi' ,
@@ -10,7 +10,7 @@ pipeline {
                 
             }
         }
-         stage('maven build') {
+         stage('build JAR') {
             steps {
               sh "mvn clean package -DskipTests=true"
 				archive 'target/*.jar'
@@ -25,12 +25,13 @@ pipeline {
 			}
 			
 		}
-        /* stage('Nexus') {
+         stage('Nexus') {
 			steps {				
 				sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
 			        }
 	                } 
-         stage('docker') {
+	    
+         stage('docker build and push') {
             steps {
                 sh'''
                 
@@ -41,6 +42,8 @@ pipeline {
 	 			docker tag stationski:1.0.0 hediabdelli719/hedi_repo:newversion
          		docker push hediabdelli719/hedi_repo:newversion
             '''
+	    }
+          }
                 stage('Docker compose') {
        steps {
          parallel(
@@ -49,13 +52,13 @@ pipeline {
            },
            "Delete running containers": {
 		       sh 'sleep 7m '
-               sh 'docker rm -f ci-spring ci-db ci-angular '
+               sh 'docker rm -f spring mysql '
            }
          )
        }
      }
-            }
-         }*/
+           
+         
     }
 }
 
