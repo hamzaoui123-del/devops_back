@@ -31,7 +31,7 @@ pipeline {
 			        }
 	                } */
 	    
-         stage('docker build and push') {
+       /*  stage('docker build and push') {
             steps {
                 sh'''
                 
@@ -43,7 +43,7 @@ pipeline {
          		docker push hediabdelli719/hedi_repo:newversion
             '''
 	    }
-          }
+          }*/
                 stage('Docker compose') {
        steps {
          parallel(
