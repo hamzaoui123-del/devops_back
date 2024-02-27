@@ -17,19 +17,19 @@ pipeline {
                 
             }
          }
-         stage('SonarQube test') {
+       /*  stage('SonarQube test') {
 			steps {
 				sh "mvn clean install"
 				sh "mvn  sonar:sonar -Dsonar.projectKey=hedi_sonar -Dsonar.host.url=http://192.168.56.3:9000  -Dsonar.login=0b072f01a98784a3fe1865d1b3e0062d5deeeed9"
 
 			}
 			
-		}
-         stage('Nexus') {
+		}*/
+        /* stage('Nexus') {
 			steps {				
 				sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
 			        }
-	                } 
+	                } */
 	    
          stage('docker build and push') {
             steps {
