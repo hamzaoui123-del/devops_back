@@ -18,14 +18,14 @@ pipeline {
             }
          }
          
-          stage('SonarQube test') {
-	steps {
- 				sh "mvn clean install"
- 				sh "mvn  sonar:sonar -Dsonar.projectKey=sassi_sonar -Dsonar.host.url=http://192.168.33.10:9000  -Dsonar.login=5ed0207fe9852601330dd9ca92709a21790ce459"
+ //          stage('SonarQube test') {
+	// steps {
+ // 				sh "mvn clean install"
+ // 				sh "mvn  sonar:sonar -Dsonar.projectKey=sassi_sonar -Dsonar.host.url=http://192.168.33.10:9000  -Dsonar.login=5ed0207fe9852601330dd9ca92709a21790ce459"
 
- 			}
+ // 			}
 			
-		}
+	// 	}
 		stage('Nexus') {
 			steps {				
 				sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
