@@ -20,7 +20,7 @@ pipeline {
         stage('SonarQube test') {
 			steps {
 				sh "mvn clean install"
-				sh "mvn  sonar:sonar -Dsonar.projectKey=hedi_sonar -Dsonar.host.url=http://192.168.56.3:9000  -Dsonar.login=0b072f01a98784a3fe1865d1b3e0062d5deeeed9"
+				sh "mvn sonar:sonar -Dsonar.projectKey=SonarQube_hedi -Dsonar.host.url=http://192.168.56.3:9000 -Dsonar.login=f1e08eafe6f3b7bd09a0a96fbade0853ba1b29e7"
 
 			}
 			
