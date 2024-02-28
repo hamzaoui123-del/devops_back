@@ -5,7 +5,7 @@ pipeline {
         stage('Git clone') {
             steps {
                 
-                git branch: 'hedi' ,
+                git branch: 'devopsyasser' ,
                 url: 'https://github.com/hamzaoui123-del/devops_back.git'
                 
             }
