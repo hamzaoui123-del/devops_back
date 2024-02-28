@@ -6,8 +6,7 @@ scrape_configs:
     metrics_path: /stationSki/actuator/prometheus
     static_configs:
       - targets: ['192.168.1.20:8282']
-
-  - job_name: 'jenkins'
+- job_name: 'jenkins'
     metrics_path: /prometheus
     static_configs:
       - targets: ['192.168.1.20:8080']
