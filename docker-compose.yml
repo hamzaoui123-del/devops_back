@@ -13,7 +13,7 @@ services:
       - db:/var/lib/mysql
  # Spring Boot Application Service
   spring-app:
-    image: hediabdelli719/hedi_repo:newversion
+    image: yasser22/yasserrepo:newversion
     container_name: spring
     restart:  on-failure
     environment:
